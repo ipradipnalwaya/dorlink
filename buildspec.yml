@@ -1,10 +1,14 @@
-name: dorlink
-runtime: yaml
-description: Example of deploying static website
-resources:
-  web:
-    type: "aws-static-website:index:Website"
-    properties:
-      sitePath: "../my-website/build"
-outputs:
-  websiteURL: ${web.websiteURL}
+version: 0.2
+
+phases:
+  build:
+    commands:
+    - echo "This is build phase... Zipping my webpage"
+ 
+  post_build:
+    commands:
+    - echo "Deployed to S3"
+artifacts:
+  files:
+    - '**/*'
+    
